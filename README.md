@@ -11,46 +11,46 @@ Add a line to your `Gemfile`:
 ## Usage
 
 The `ruby-deltek` wrapper has three main entry points: `clients`, `projects`,
-and `employees`. To initialise the library, call `Deltek.new/4`:
+and `employees`. To initialise the library, call `Deltek.config/4` (perhaps in an initializer):
 ```
-deltek = Deltek.new(wsdl, username, password, database_name)
+Deltek.config(wsdl, username, password, database_name)
 ```
 
-Once you have the `deltek` object, use it to execute calls to the Deltek API:
+Now use the `Deltek` module to access the Deltek API:
 ```
 ## Projects
 
 # Retrieve a project by its code
-deltek.project("00000.00.E")
+Deltek.project("00000.00.E")
 
 # Retrieve the first 10 projects
-deltek.projects
+Deltek.projects
 
 # Retrieve 25 projects with no offset
-deltek.projects(25)
+Deltek.projects(25)
 
 # Retrieve 25 projects offset by 50 (useful for pagination)
-deltek.projects(25, 50)
+Deltek.projects(25, 50)
 
 ## Employees
 
 # Retrieve an employee by first and last name
-deltek.employee("Alice", "Bob")
+Deltek.employee("Alice", "Bob")
 
 # Retrieve an employee by its id (usually found in projects details)
-deltek.employee("231")
+Deltek.employee("231")
 
 # Retrieve paginated employees
-deltek.employees(25, 50)
+Deltek.employees(25, 50)
 
 ## Clients
 
 # Retrieve a client by name (implemented with %LIKE%)
-deltek.client_by_name("Grand Budapest")
+Deltek.client_by_name("Grand Budapest")
 
 # Retrieve a client by its id (usually found in projects details)
-deltek.client_by_id("231")
+Deltek.client_by_id("231")
 
 # Retrieve paginated clients
-deltek.clients(25, 50)
+Deltek.clients(25, 50)
 ```
