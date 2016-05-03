@@ -3,25 +3,25 @@ require 'nori'
 
 module Deltek
   module Extractor
-    def self.projects xml
-      parse_collection xml, "PR"
+    def self.projects xml, raw
+      raw ? xml : parse_collection(xml, "PR")
     end
-    def self.project xml
-      xml
-    end
-
-    def self.employees xml
-      parse_collection xml, "EM"
-    end
-    def self.employee xml
-      parse_row xml
+    def self.project xml, raw
+      raw ? xml : parse_row(xml)
     end
 
-    def self.clients xml
-      parse_collection xml, "CL"
+    def self.employees xml, raw
+      raw ? xml : parse_collection(xml, "EM")
     end
-    def self.client xml
-      parse_row xml
+    def self.employee xml, raw
+      raw ? xml : parse_row(xml)
+    end
+
+    def self.clients xml, raw
+      raw ? xml : parse_collection(xml, "CL")
+    end
+    def self.client xml, raw
+      raw ? xml : parse_row(xml)
     end
 
     private
